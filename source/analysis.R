@@ -37,10 +37,10 @@ prop_white_black_jailed_2018 <- ggplot(prop_white_black_jailed_2018_data, aes(x 
   geom_col(color = "black") +
   geom_text(aes(label = value),
             position = position_stack(vjust = 0.5)) +
-  guides(fill = guide_legend(title = "Jail Proportion")) +
+  guides(fill = guide_legend(title = "Jail Population")) +
   coord_polar(theta = "y") +
   theme_void() +
-  labs(title = "Comparison of White vs Black Proportion in Jail (2018)")
+  labs(title = "Comparison of White vs Black Population in Jail (2018)")
 prop_white_black_jailed_2018
 
 # Create Map for black, white, and overall jail population within the year of 2018
