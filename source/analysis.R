@@ -5,6 +5,7 @@ library(leaflet)
 library(maps)
 library(mapproj)
 
+# Imports data from Vera Institute into variable
 incarceration_data <- read.csv(url("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv"))
 
 # Data Wrangling for trends over time chart of jail population of specific race divided by total ages 15-64 in that race group
@@ -23,7 +24,7 @@ per_capita_jail_race <- ggplot(per_capita_jail_race_data, aes(x = year, y = valu
   labs(x = "Year", y = "Jail Population per Capita (Ages 15-64)", title = "Jail Population per Capita Over Time (Ages 15-64)")
 per_capita_jail_race
 
-# Data Wrangling for variable comparison chart of prison population over time
+# Data Wrangling for variable comparison chart of White and Black jail population in 2018
 prop_white_black_jailed_2018_data <- incarceration_data %>%
   filter(year == 2018) %>%
   group_by(year) %>%
@@ -31,7 +32,7 @@ prop_white_black_jailed_2018_data <- incarceration_data %>%
 
 prop_white_black_jailed_2018_data <- melt(prop_white_black_jailed_2018_data, id = "year")
 
-# Graphs the variable comparison chart
+# Graphs the variable comparison pie chart
 prop_white_black_jailed_2018 <- ggplot(prop_white_black_jailed_2018_data, aes(x = "", y = value, fill = variable)) + 
   geom_col(color = "black") +
   geom_text(aes(label = value),
