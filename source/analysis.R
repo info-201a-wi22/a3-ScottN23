@@ -74,7 +74,8 @@ black_incarceration_map <- ggplot(map_data) +
   coord_map() +
   scale_fill_continuous(limits = c(0, max(map_data$black_jail_pop)), na.value = "white", low = "steelblue", high = "steelblue4") +
   blank_theme +
-  ggtitle("Black Jailing Population in United States")
+  ggtitle("Black Jailing Population in United States") +
+  guides(fill = guide_legend(title = "Black Jail Population"))
 black_incarceration_map
 
 white_incarceration_map <- ggplot(map_data) + 
@@ -85,7 +86,8 @@ white_incarceration_map <- ggplot(map_data) +
   coord_map() +
   scale_fill_continuous(limits = c(0, max(map_data$white_jail_pop)), na.value = "white", low = "steelblue", high = "steelblue4") +
   blank_theme +
-  ggtitle("White Jailing Population in United States")
+  ggtitle("White Jailing Population in United States") +
+  guides(fill = guide_legend(title = "White Jail Population"))
 white_incarceration_map
 
 total_incarceration_map <- ggplot(map_data) + 
@@ -96,10 +98,13 @@ total_incarceration_map <- ggplot(map_data) +
   coord_map() +
   scale_fill_continuous(limits = c(0, max(map_data$total_jail_pop)), na.value = "white", low = "steelblue", high = "steelblue4") +
   blank_theme +
-  ggtitle("Total Jail Population in United States")
+  ggtitle("Total Jail Population in United States") +
+  guides(fill = guide_legend(title = "Jail Population"))
 total_incarceration_map
 
 # Summary Variable Calculations
+
+# Black, White, and total jail population in 2018
 black_jail_2018 <- incarceration_data %>%
   filter(year == 2018) %>%
   summarize(black_jail_2018 = sum(black_jail_pop, na.rm = TRUE)) %>%
@@ -114,11 +119,13 @@ total_jail_2018 <- incarceration_data %>%
   filter(year == 2018) %>%
   summarize(total_jail_2018 = sum(total_jail_pop, na.rm = TRUE)) %>%
   pull(total_jail_2018)
-  
+
+# Proportion of Black and White compared to total in 2018
 prop_blacK_jail_2018 <- black_jail_2018 / total_jail_2018 * 100
   
 prop_white_jail_2018 <- white_jail_2018 / total_jail_2018 * 100
 
+# Capita of black and white in jail from ages 15-64 within respective races in 2018
 capita_black_jail <- incarceration_data %>%
   filter(year == 2018) %>%
   summarize(capita_black_jail = black_jail_2018 / sum(black_pop_15to64, na.rm = TRUE) * 100) %>%
@@ -129,9 +136,18 @@ capita_white_jail <- incarceration_data %>%
   summarize(capita_white_jail = white_jail_2018 / sum(white_pop_15to64, na.rm = TRUE) * 100) %>%
   pull(capita_white_jail)
 
+# Highest jailed state in 2018
 highest_jailed_state_2018 <- incarceration_data %>%
   filter(year == 2018) %>%
   group_by(state) %>%
   summarize(total_jail_pop = sum(total_jail_pop, na.rm = TRUE)) %>%
   filter(total_jail_pop == max(total_jail_pop, na.rm = TRUE)) %>%
   pull(state)
+
+# Highest jailed county in 2018
+highest_jail_county_2018 <- incarceration_data %>%
+  filter(year == 2018) %>%
+  group_by(county_name) %>%
+  summarize(total_jail_pop = sum(total_jail_pop, na.rm = TRUE)) %>%
+  filter(total_jail_pop == max(total_jail_pop, na.rm = TRUE)) %>%
+  pull(county_name)

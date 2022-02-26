@@ -14,9 +14,10 @@ Within this project I'm looking to use the incarceration trends data set provide
 ## Values of Interest
 In my search for specific information I decided to focus on the year of **2018** and came out with the following conclusions:
 <br /> - **California** is the state with the **highest** amount of individuals in jail.
+<br /> - **Los Angeles** county was the county with the **highest** amount of individuals jailed.
 <br /> - There was a total of **247,546** black individuals, **346,061** white individuals, and a total of **737,126** individuals in jail in the year **2018**.
 <br /> - The proportion of black individuals in jail is **33.58%**, while the proportion of white individuals in jail is **46.95%**.
-<br /> - When taking the proportion of black and white individuals between the ages of 15-64 and comparing it to their respective races total jail population, **0.86%** of black individuals would be in jail while **0.27%** of white indivuals would be in jail.
+<br /> - When taking the proportion of black and white individuals between the ages of 15-64 and comparing it to their respective races total jail population, **0.86%** of black individuals would be in jail while **0.27%** of white individuals would be in jail.
 
 ## Data Visualizations
 The following chart displays the relation between the total individuals between the ages of 15-64 within each specific race compared to the total individuals that are in jail for that specific race. I chose this representation because I wanted to see a decently accurate per capita relation between races as I think this is one of the best ways to find inequalities between races. From this we find that the proportion of black individuals that are in jail is greatly higher when compared to other races ever since the start of the data. <br />
